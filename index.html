@@ -7,25 +7,25 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Taskinator</title>
   <link rel="stylesheet" href="./assets/css/style.css">
-  <script src="./assets/js/script.js"></script>
+  <script defer src="./assets/js/script.js"></script>
 </head>
 
 <body>
     <div>
-        <div>
+        <div id="questlist" class="hide">
             <div id="question">
                 Question
             </div>
-            <div id="answers" class="column">
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>4</button>
+            <div id="answer-btn" class="column">
+                <button id="btn-1">1</button>
+                <button id="btn-2">2</button>
+                <button id="btn-3">3</button>
+                <button id="btn-4">4</button>
             </div>
         </div>
         <div id="navigation">
-            <button id="start-btn">Start</button>
-            <button id="next-btn">Next</button>
+            <button id="start-btn" >Start</button>
+            <button id="next-btn" class="hide">Next</button>
         </div>
     </div>
 </body>

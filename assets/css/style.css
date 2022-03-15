@@ -8,6 +8,7 @@ body {
     align-items: center;
     width: 100vw;
     height: 40vh;
+    background-color: skyblue;
 
 }
 
@@ -17,11 +18,26 @@ body {
     justify-content: space-between;
     height: 10vh;
     margin: 10px 0 10px 0 ;
+    
+    
+}
+button {
+    background-color: brown;
+    border-radius: 5px;
+    padding: 3.5px 10px;
 }
 
+button:hover {
+    background-color: grey;
+}
 .navigation {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 10000vh;
+    border-radius: 5px;
+}
+
+.hide {
+    display: none;
 }
