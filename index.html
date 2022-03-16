@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Taskinator</title>
+  <title>Coding Quiz</title>
   <link rel="stylesheet" href="./assets/css/style.css">
   <script defer src="./assets/js/script.js"></script>
 </head>
@@ -26,17 +26,46 @@
         <div id="navigation">
             <button id="start-btn" >Start</button>
         </div>
-        <div>
+
+        <div id="response">
             <div  id="correct" class="hide">
                 Correct
             </div>
             <div id="incorrect" class="hide">
                 Incorrect
             </div>
-            <div id="points">
-                
-            </div>
         </div>
+        <div id="points">
+
+        </div>
+
+        <div id="inputboard" class="hide">
+            <div>
+                Put Your Username Below:
+            </div>
+            <header>
+                <form id="task-form">
+                    <div>
+                        <input type="text" name="task-name" placeholder="Username" />
+                    </div>
+                    <div>
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
+            </header>
+        </div>
+
+        <div id="scoreboard" class="hide">
+            <main class="page-content">
+                <section class="task-list-wrapper">
+                    <h2 class="list-title">ScoreBoard</h2>
+                    <ul class="task-list" id="tasks-to-do"></ul>
+                    <button id="back-btn">Back</button>
+                </section>
+            </main>
+
+        </div>
+        
     </div>
 </body>
 </html>

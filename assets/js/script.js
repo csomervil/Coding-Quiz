@@ -4,6 +4,8 @@ var questionbody = document.getElementById('questlist')
 
 var answerBtns = document.getElementById('answer-btn')
 
+// response is currently unused var response = document.getElementById('response')
+
 var correctText = document.getElementById('correct')
 
 var incorrectText = document.getElementById('incorrect')
@@ -67,21 +69,13 @@ var answerElement2 = document.getElementById('btn-2')
 var answerElement3 = document.getElementById('btn-3')
 var answerElement4 = document.getElementById('btn-4')
 
-var points = 0;
+points = 0;
 var playerpoints = document.getElementById('points')
+var inputBoard = document.getElementById('inputboard')
+var scoreBoard = document.getElementById('scoreboard')
 
-/* So that each button moves on to next question */
-// answerBtns.addEventListener('click', () => {
-//     if (questions.answers.answer[questionNumber]) {
-//         correctText.classList.remove('hide')
-//         incorrectText.classList.add('hide')
-//     } else {
-//         incorrectText.classList.remove('hide')
-//         correctText.classList.add('hide')
-//     }
-//     questionNumber++
-//     displayQuestion(questions[questionNumber])
-// })
+
+
 
 answerElement1.addEventListener('click', () => {
     if (questions[questionNumber].answers[0].answer) {
@@ -92,6 +86,7 @@ answerElement1.addEventListener('click', () => {
         incorrectText.classList.remove('hide')
         correctText.classList.add('hide')
     }
+    playerpoints.innerHTML = "points:" + points
     questionNumber++
     displayQuestion(questions[questionNumber])
 })
@@ -100,11 +95,12 @@ answerElement2.addEventListener('click', () => {
     if (questions[questionNumber].answers[1].answer) {
         correctText.classList.remove('hide')
         incorrectText.classList.add('hide')
-        points = points + 7
+        points = points + 5
     } else {
         incorrectText.classList.remove('hide')
         correctText.classList.add('hide')
     }
+    playerpoints.innerHTML = "points:" + points
     questionNumber++
     displayQuestion(questions[questionNumber])
 })
@@ -118,7 +114,7 @@ answerElement3.addEventListener('click', () => {
         incorrectText.classList.remove('hide')
         correctText.classList.add('hide')
     }
-    playerpoints.innerText = "points:" + points
+    playerpoints.innerHTML = "points:" + points
     questionNumber++
     displayQuestion(questions[questionNumber])
 })
@@ -127,17 +123,20 @@ answerElement4.addEventListener('click', () => {
     if (questions[questionNumber].answers[3].answer) {
         correctText.classList.remove('hide')
         incorrectText.classList.add('hide')
-        points = points + 10
+        points = points + 5
         
     } else {
         incorrectText.classList.remove('hide')
         correctText.classList.add('hide')
     }
+    playerpoints.innerHTML = "points:" + points
     questionNumber++
     displayQuestion(questions[questionNumber])
 })
 
 function startQuiz() {
+    playerpoints.innerHTML = "points:" + 0
+    playerpoints.classList.remove('hide')
     startbtn.classList.add('hide')
     questionbody.classList.remove('hide')
     
@@ -148,20 +147,78 @@ function startQuiz() {
 
 /* So that the answers and question are displayed */
 function displayQuestion(question) {
-    questionElement.innerText = question.question
-    answerElement1.innerText = question.answers[0].text
-    answerElement2.innerText = question.answers[1].text
-    answerElement3.innerText = question.answers[2].text
-    answerElement4.innerText = question.answers[3].text
-    playerpoints.innerText = "points:" + points
     
+    if (questionNumber === 4) {
+        questionbody.classList.add('hide')
+        inputBoard.classList.remove('hide')
+    } else {
+        questionElement.innerText = question.question
+        answerElement1.innerText = question.answers[0].text
+        answerElement2.innerText = question.answers[1].text
+        answerElement3.innerText = question.answers[2].text
+        answerElement4.innerText = question.answers[3].text
+    }
 
 }
 
-function playerResults() {
+var formEl = document.querySelector("#task-form");
+var tasksToDoEl = document.querySelector("#tasks-to-do");
 
+var taskFormHandler = function(event) {
+    event.preventDefault();
+    var taskNameInput = document.querySelector("input[name='task-name'").value;
+
+if (taskNameInput === "") {
+    return false
 }
+
+formEl.reset();
+
+
+    document.querySelector("input[name='task-name']").value = "";
+  
+
+var taskDataObj = {
+    name: taskNameInput,
+};
+
+goBoard()
+createTaskEl(taskDataObj);
+};
+
+var createTaskEl = function(taskDataObj) {
+  // create list item
+  var listItemEl = document.createElement("ul");
+  listItemEl.className = "task-item";
+
+  // create div to hold task info and add to list item
+  var taskInfoEl = document.createElement("div");
+  taskInfoEl.className = "task-info";
+  taskInfoEl.innerHTML = "<h3 class='task-name'>" + taskDataObj.name + " " + playerpoints;
+  listItemEl.appendChild(taskInfoEl);
+
+  console.dir(listItemEl);
+
+  // add list item to list
+  tasksToDoEl.appendChild(listItemEl);
+};
+
+var goBoard = function() {
+    inputBoard.classList.add('hide')
+    playerpoints.classList.add('hide')
+    correctText.classList.add('hide')
+    incorrectText.classList.add('hide')
+    questionbody.classList.add('hide')
+    scoreBoard.classList.remove('hide')
+}
+
+formEl.addEventListener("submit", taskFormHandler);
 
 function goBack() {
-
+    scoreBoard.classList.add('hide')
+    startbtn.classList.remove('hide')
+    questionNumber = 0;
 }
+
+var backButton = document.getElementById('back-btn')
+backButton.addEventListener("click", goBack)
