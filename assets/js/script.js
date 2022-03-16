@@ -80,6 +80,7 @@ var scoreBoard = document.getElementById('scoreboard')
 
 var timerEl = document.getElementById('timer')
 
+var deductime = 0;
 
 answerElement1.addEventListener('click', () => {
     if (questions[questionNumber].answers[0].answer) {
@@ -89,6 +90,7 @@ answerElement1.addEventListener('click', () => {
     } else {
         incorrectText.classList.remove('hide')
         correctText.classList.add('hide')
+        deductime = -5;
     }
     playerpoints.innerHTML = "points:" + points
     questionNumber++
@@ -103,6 +105,7 @@ answerElement2.addEventListener('click', () => {
     } else {
         incorrectText.classList.remove('hide')
         correctText.classList.add('hide')
+        deductime = -5;
     }
     playerpoints.innerHTML = "points:" + points
     questionNumber++
@@ -117,6 +120,7 @@ answerElement3.addEventListener('click', () => {
     } else {
         incorrectText.classList.remove('hide')
         correctText.classList.add('hide')
+        deductime = -5;
     }
     playerpoints.innerHTML = "points:" + points
     questionNumber++
@@ -132,6 +136,7 @@ answerElement4.addEventListener('click', () => {
     } else {
         incorrectText.classList.remove('hide')
         correctText.classList.add('hide')
+        deductime = -5;
     }
     playerpoints.innerHTML = "points:" + points
     questionNumber++
@@ -247,20 +252,22 @@ backButton.addEventListener("click", goBack)
 
 function countdown() {
     var timeLeft = 15;
-  
+    
     var timeInterval = setInterval(function() {
-      if (timeLeft >= 1) {
-        timerEl.textContent = 'Time Remaining: ' + timeLeft;
-        timeLeft--;
-      } else if (timeLeft == 0) {
-        timerEl.textContent = 'Try Again?';
-        timeLeft--;
-        alert("Time is up")
-        goBoard();
-        goBack();
+        if (timeLeft >= 1) {
+            timerEl.textContent = 'Time Remaining: ' + timeLeft;
+            timeLeft = timeLeft + deductime;
+            deductime = -1;
+        } else if (timeLeft <= 0) {
+            timerEl.textContent = 'Try Again?';
+            timeLeft--;
+            alert("Time is up")
+            goBoard();
+            goBack();
         
-      } if (questionbody.classList.contains('hide')) {
-            clearInterval(timeInterval);
-      }
+        } if (questionbody.classList.contains('hide')) {
+                clearInterval(timeInterval);
+    }
+
     }, 1000);
   }
