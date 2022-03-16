@@ -139,13 +139,14 @@ answerElement4.addEventListener('click', () => {
 })
 
 function startQuiz() {
-    
+    points = 0;
     playerpoints.innerHTML = "points:" + 0
-    timerEl.textContent = "Time Remaining: " + 20
+    timerEl.textContent = "Time Remaining: 16"
     playerpoints.classList.remove('hide')
     startbtn.classList.add('hide')
     questionbody.classList.remove('hide')
     scoreBtn.classList.add('hide')
+    timerEl.classList.remove('hide')
 
     countdown()
 
@@ -160,6 +161,8 @@ function displayQuestion(question) {
     if (questionNumber === 4) {
         questionbody.classList.add('hide')
         inputBoard.classList.remove('hide')
+        timerEl.classList.add('hide')
+        tiemrLeft = 0;
     } else {
         questionElement.innerText = question.question
         answerElement1.innerText = question.answers[0].text
@@ -219,6 +222,7 @@ var goBoard = function() {
     incorrectText.classList.add('hide')
     questionbody.classList.add('hide')
     scoreBoard.classList.remove('hide')
+    
 }
 
 function goScore() {
@@ -226,6 +230,7 @@ function goScore() {
     startbtn.classList.add('hide')
     backButton.classList.remove('hide')
     scoreBoard.classList.remove('hide')
+    
 }
 
 formEl.addEventListener("submit", taskFormHandler);
@@ -241,9 +246,8 @@ var backButton = document.getElementById('back-btn')
 backButton.addEventListener("click", goBack)
 
 function countdown() {
-    var timeLeft = 5;
+    var timeLeft = 15;
   
-    // TODO: Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
     var timeInterval = setInterval(function() {
       if (timeLeft >= 1) {
         timerEl.textContent = 'Time Remaining: ' + timeLeft;
@@ -254,6 +258,9 @@ function countdown() {
         alert("Time is up")
         goBoard();
         goBack();
+        
+      } if (questionbody.classList.contains('hide')) {
+            clearInterval(timeInterval);
       }
     }, 1000);
   }
