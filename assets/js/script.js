@@ -1,5 +1,7 @@
 var startbtn = document.getElementById('start-btn')
 
+var scoreBtn = document.getElementById('score-btn')
+
 var questionbody = document.getElementById('questlist')
 
 var answerBtns = document.getElementById('answer-btn')
@@ -11,6 +13,8 @@ var correctText = document.getElementById('correct')
 var incorrectText = document.getElementById('incorrect')
 
 startbtn.addEventListener('click', startQuiz)
+
+scoreBtn.addEventListener('click', goScore)
 
 var questionNumber = 0;
 
@@ -74,7 +78,7 @@ var playerpoints = document.getElementById('points')
 var inputBoard = document.getElementById('inputboard')
 var scoreBoard = document.getElementById('scoreboard')
 
-
+var timerEl = document.getElementById('timer')
 
 
 answerElement1.addEventListener('click', () => {
@@ -135,11 +139,16 @@ answerElement4.addEventListener('click', () => {
 })
 
 function startQuiz() {
+    
     playerpoints.innerHTML = "points:" + 0
+    timerEl.textContent = "Time Remaining: " + 20
     playerpoints.classList.remove('hide')
     startbtn.classList.add('hide')
     questionbody.classList.remove('hide')
-    
+    scoreBtn.classList.add('hide')
+
+    countdown()
+
     displayQuestion(questions[questionNumber]);
 
 
@@ -212,9 +221,17 @@ var goBoard = function() {
     scoreBoard.classList.remove('hide')
 }
 
+function goScore() {
+    scoreBtn.classList.add('hide')
+    startbtn.classList.add('hide')
+    backButton.classList.remove('hide')
+    scoreBoard.classList.remove('hide')
+}
+
 formEl.addEventListener("submit", taskFormHandler);
 
 function goBack() {
+    scoreBtn.classList.remove('hide')
     scoreBoard.classList.add('hide')
     startbtn.classList.remove('hide')
     questionNumber = 0;
@@ -222,3 +239,21 @@ function goBack() {
 
 var backButton = document.getElementById('back-btn')
 backButton.addEventListener("click", goBack)
+
+function countdown() {
+    var timeLeft = 5;
+  
+    // TODO: Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
+    var timeInterval = setInterval(function() {
+      if (timeLeft >= 1) {
+        timerEl.textContent = 'Time Remaining: ' + timeLeft;
+        timeLeft--;
+      } else if (timeLeft == 0) {
+        timerEl.textContent = 'Try Again?';
+        timeLeft--;
+        alert("Time is up")
+        goBoard();
+        goBack();
+      }
+    }, 1000);
+  }
