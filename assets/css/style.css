@@ -40,4 +40,37 @@ button:hover {
 
 .hide {
     display: none;
+    
 }
+
+#score-btn {
+    width: 20vw;
+    height: 3vw;
+}
+
+#start-btn {
+    margin-left: 1vw;
+    width: 18vw;
+    height: 3vw;
+}
+
+#scoreboard {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+#back-btn {
+    background-color: black;
+    margin-top: .3vw;
+    position: absolute;
+    margin-left: 180px;
+}
+
+#response {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+#inputboard {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+

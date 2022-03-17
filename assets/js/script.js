@@ -150,7 +150,7 @@ answerElement4.addEventListener('click', () => {
 function startQuiz() {
     points = 0;
     playerpoints.innerHTML = "points:" + 0
-    timerEl.textContent = "Time Remaining: 16"
+    timerEl.textContent = "Time Remaining: 14"
     playerpoints.classList.remove('hide')
     startbtn.classList.add('hide')
     questionbody.classList.remove('hide')
@@ -201,6 +201,13 @@ function goBack() {
     questionNumber = 0;
 }
 
+function goStart() {
+    questionbody.classList.add('hide')
+    inputBoard.classList.remove('hide')
+    goScore();
+    goBack();
+}
+
 
 function addLi () {
     var 
@@ -208,6 +215,11 @@ function addLi () {
         listNode = document.getElementById('list'),
         liNode = document.createElement("li"),
         txtNode = document.createTextNode(txtVal + " " + " " + points);
+    if (txtVal === "") {
+        alert("Username Required")
+        return false;
+    }
+        
     goScore();
     liNode.appendChild(txtNode);
     listNode.appendChild(liNode);
@@ -220,24 +232,28 @@ function addLi () {
 var backButton = document.getElementById('back-btn')
 backButton.addEventListener("click", goBack)
 
+// totaltime = 0;
+// timerEl.textContent = 'Time Remaining: ' + (countdown(15) - 1);
 function countdown() {
-    var timeLeft = 15;
-    
+    timeLeft = 14;
     var timeInterval = setInterval(function() {
+        if (questionbody.classList.contains('hide')) {
+            clearInterval(timeInterval);
+        }  
         if (timeLeft >= 1) {
-            timerEl.textContent = 'Time Remaining: ' + timeLeft;
+            timerEl.textContent = 'Time Remaining: ' + (timeLeft - 1);
+            timeLeft--;
             timeLeft = timeLeft + deductime;
-            deductime = -1;
-        } else if (timeLeft <= 0) {
+            deductime = 0;
+            return timeLeft;
+        } else if (timeLeft  <= 0) {
             timerEl.textContent = 'Try Again?';
             timeLeft--;
             alert("Time is up")
-            goBoard();
-            goBack();
+            clearInterval(timeInterval);
+            goStart();
         
-        } if (questionbody.classList.contains('hide')) {
-                clearInterval(timeInterval);
-    }
+        } 
 
     }, 1000);
   }
