@@ -16,6 +16,10 @@ startbtn.addEventListener('click', startQuiz)
 
 scoreBtn.addEventListener('click', goScore)
 
+var subBtn = document.getElementById('submit')
+
+subBtn.addEventListener('click', addLi);
+
 var questionNumber = 0;
 
 var questions = [
@@ -178,59 +182,11 @@ function displayQuestion(question) {
 
 }
 
-var formEl = document.querySelector("#task-form");
-var tasksToDoEl = document.querySelector("#tasks-to-do");
-
-var taskFormHandler = function(event) {
-    event.preventDefault();
-    var taskNameInput = document.querySelector("input[name='task-name'").value;
-
-if (taskNameInput === "") {
-    return false
-}
-
-formEl.reset();
-
-
-    document.querySelector("input[name='task-name']").value = "";
-  
-
-var taskDataObj = {
-    name: taskNameInput,
-};
-
-goBoard()
-createTaskEl(taskDataObj);
-};
-
-var createTaskEl = function(taskDataObj) {
-  // create list item
-  var listItemEl = document.createElement("ul");
-  listItemEl.className = "task-item";
-
-  // create div to hold task info and add to list item
-  var taskInfoEl = document.createElement("div");
-  taskInfoEl.className = "task-info";
-  taskInfoEl.innerHTML = "<h3 class='task-name'>" + taskDataObj.name + " " + playerpoints;
-  listItemEl.appendChild(taskInfoEl);
-
-  console.dir(listItemEl);
-
-  // add list item to list
-  tasksToDoEl.appendChild(listItemEl);
-};
-
-var goBoard = function() {
-    inputBoard.classList.add('hide')
+function goScore() {
     playerpoints.classList.add('hide')
     correctText.classList.add('hide')
     incorrectText.classList.add('hide')
-    questionbody.classList.add('hide')
-    scoreBoard.classList.remove('hide')
-    
-}
-
-function goScore() {
+    inputBoard.classList.add('hide')
     scoreBtn.classList.add('hide')
     startbtn.classList.add('hide')
     backButton.classList.remove('hide')
@@ -238,14 +194,28 @@ function goScore() {
     
 }
 
-formEl.addEventListener("submit", taskFormHandler);
-
 function goBack() {
     scoreBtn.classList.remove('hide')
     scoreBoard.classList.add('hide')
     startbtn.classList.remove('hide')
     questionNumber = 0;
 }
+
+
+function addLi () {
+    var 
+        txtVal = document.getElementById('txtVal').value,
+        listNode = document.getElementById('list'),
+        liNode = document.createElement("li"),
+        txtNode = document.createTextNode(txtVal + " " + " " + points);
+    goScore();
+    liNode.appendChild(txtNode);
+    listNode.appendChild(liNode);
+    saveAll()
+
+
+}
+
 
 var backButton = document.getElementById('back-btn')
 backButton.addEventListener("click", goBack)
@@ -271,3 +241,41 @@ function countdown() {
 
     }, 1000);
   }
+
+function saveAll() {
+    var oldStorage = [];
+
+    var values = document.querySelectorAll('li');
+    for (var i = 0; i < values.length; i++) {
+      oldStorage.push(values[i].innerHTML);
+    }
+    var newStorage = oldStorage
+    localStorage.setItem('items', JSON.stringify(newStorage));
+}
+
+function loadAll() {
+
+    var storedvalue = localStorage.getItem('items');
+    console.log(storedvalue);
+
+    if (!storedvalue) {
+        return false;
+    }
+
+    storedvalue = JSON.parse(storedvalue);
+    console.log(storedvalue);
+
+    for (var i = 0; i < storedvalue.length; i++) {
+        newword = storedvalue[i]
+        var
+            listNode = document.getElementById('list'),
+            liNode = document.createElement("li"),
+            txtNode = document.createTextNode(newword);
+            
+        liNode.appendChild(txtNode);
+        listNode.appendChild(liNode);
+    }
+
+}
+
+  loadAll();
