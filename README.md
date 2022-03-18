@@ -13,7 +13,7 @@ https://github.com/csomervil/Coding-Quiz/tree/main/assets/js
 # Preview
 https://csomervil.github.io/Coding-Quiz/
 
-Screenshots of the Quiz webpage.
+Screenshots of the quiz webpage.
 
 Preview of Homepage:
 ![Quiz0](https://user-images.githubusercontent.com/100229796/159063213-421fa51a-0a38-4f5a-bca9-f3cb83dabd14.png)
