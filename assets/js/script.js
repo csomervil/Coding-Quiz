@@ -1,25 +1,24 @@
-var startbtn = document.getElementById('start-btn')
+            // Variable Declaration //
+            
+        // For Navigation Buttons and Text //
+var startButton = document.getElementById('start-btn')
 
-var scoreBtn = document.getElementById('score-btn')
+var scoreButton = document.getElementById('score-btn')
 
-var questionbody = document.getElementById('questlist')
+var backButton = document.getElementById('back-btn')
+
+var questionBody = document.getElementById('questlist')
 
 var answerBtns = document.getElementById('answer-btn')
-
-// response is currently unused var response = document.getElementById('response')
 
 var correctText = document.getElementById('correct')
 
 var incorrectText = document.getElementById('incorrect')
 
-startbtn.addEventListener('click', startQuiz)
-
-scoreBtn.addEventListener('click', goScore)
-
 var subBtn = document.getElementById('submit')
 
-subBtn.addEventListener('click', addLi);
 
+        // For Question and Answers //
 var questionNumber = 0;
 
 var questions = [
@@ -73,18 +72,38 @@ var questions = [
 var questionElement = document.getElementById('question')
 
 var answerElement1 = document.getElementById('btn-1')
+
 var answerElement2 = document.getElementById('btn-2')
+
 var answerElement3 = document.getElementById('btn-3')
+
 var answerElement4 = document.getElementById('btn-4')
 
-points = 0;
+            // For Points //
+var points = 0;
+
 var playerpoints = document.getElementById('points')
+
 var inputBoard = document.getElementById('inputboard')
+
 var scoreBoard = document.getElementById('scoreboard')
 
+            // For timer //
 var timerEl = document.getElementById('timer')
 
 var deductime = 0;
+
+
+        // Event Declaration //
+startButton.addEventListener('click', startQuiz);
+
+scoreButton.addEventListener('click', goScore);
+
+backButton.addEventListener("click", goBack);
+
+subBtn.addEventListener('click', addLi);
+
+
 
 answerElement1.addEventListener('click', () => {
     if (questions[questionNumber].answers[0].answer) {
@@ -147,14 +166,17 @@ answerElement4.addEventListener('click', () => {
     displayQuestion(questions[questionNumber])
 })
 
+            // Functions Begin //
+
+        // So Quiz Commences //
 function startQuiz() {
     points = 0;
     playerpoints.innerHTML = "points:" + 0
     timerEl.textContent = "Time Remaining: 14"
     playerpoints.classList.remove('hide')
-    startbtn.classList.add('hide')
-    questionbody.classList.remove('hide')
-    scoreBtn.classList.add('hide')
+    startButton.classList.add('hide')
+    questionBody.classList.remove('hide')
+    scoreButton.classList.add('hide')
     timerEl.classList.remove('hide')
 
     countdown()
@@ -164,11 +186,11 @@ function startQuiz() {
 
 }
 
-/* So that the answers and question are displayed */
+    // So that the answers and question are displayed //
 function displayQuestion(question) {
     
     if (questionNumber === 4) {
-        questionbody.classList.add('hide')
+        questionBody.classList.add('hide')
         inputBoard.classList.remove('hide')
         timerEl.classList.add('hide')
         tiemrLeft = 0;
@@ -182,33 +204,34 @@ function displayQuestion(question) {
 
 }
 
+    // Navigation Between Menus//
 function goScore() {
     playerpoints.classList.add('hide')
     correctText.classList.add('hide')
     incorrectText.classList.add('hide')
     inputBoard.classList.add('hide')
-    scoreBtn.classList.add('hide')
-    startbtn.classList.add('hide')
+    scoreButton.classList.add('hide')
+    startButton.classList.add('hide')
     backButton.classList.remove('hide')
     scoreBoard.classList.remove('hide')
     
 }
 
 function goBack() {
-    scoreBtn.classList.remove('hide')
+    scoreButton.classList.remove('hide')
     scoreBoard.classList.add('hide')
-    startbtn.classList.remove('hide')
+    startButton.classList.remove('hide')
     questionNumber = 0;
 }
 
 function goStart() {
-    questionbody.classList.add('hide')
+    questionBody.classList.add('hide')
     inputBoard.classList.remove('hide')
     goScore();
     goBack();
 }
 
-
+            // To Add New Scores //
 function addLi () {
     var 
         txtVal = document.getElementById('txtVal').value,
@@ -229,15 +252,12 @@ function addLi () {
 }
 
 
-var backButton = document.getElementById('back-btn')
-backButton.addEventListener("click", goBack)
-
 // totaltime = 0;
 // timerEl.textContent = 'Time Remaining: ' + (countdown(15) - 1);
 function countdown() {
     timeLeft = 14;
     var timeInterval = setInterval(function() {
-        if (questionbody.classList.contains('hide')) {
+        if (questionBody.classList.contains('hide')) {
             clearInterval(timeInterval);
         }  
         if (timeLeft >= 1) {
@@ -258,6 +278,7 @@ function countdown() {
     }, 1000);
   }
 
+    // Saving Scores to LocalStorage and Displaying them //
 function saveAll() {
     var oldStorage = [];
 
