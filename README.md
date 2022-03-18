@@ -11,11 +11,11 @@ The link to the quiz webpage is provided below.
 https://github.com/csomervil/Coding-Quiz/tree/main/assets/js
 
 # Preview
+https://csomervil.github.io/Coding-Quiz/
 
 Screenshots of the Quiz webpage.
 
 Preview of Homepage:
-https://csomervil.github.io/Coding-Quiz/
 ![Quiz0](https://user-images.githubusercontent.com/100229796/159063213-421fa51a-0a38-4f5a-bca9-f3cb83dabd14.png)
 ![Quiz1](https://user-images.githubusercontent.com/100229796/159063237-31b6fdba-82dc-49b1-961b-836a8a6b0eac.png)
 ![Quiz3](https://user-images.githubusercontent.com/100229796/159063259-c18d6221-828e-4ffd-a554-831fb9ca482a.png)
