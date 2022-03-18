@@ -2,7 +2,7 @@
 
 # Introduction
 
-The Basic Javascript Coding Quiz is a webpage made in HTML, CSS and Javascript. The quiz has interactive buttons that allow the user to progress through a series of questions over a given period of time. After completing the questions the user can put their username in a scoreboard. All values placed in the scoreboard are saved to local storage.
+The Fundamental Javascript Coding Quiz is a webpage made in HTML, CSS and Javascript. The quiz has interactive buttons that allow the user to progress through a series of questions over a given period of time. After completing the questions the user can put their username in a scoreboard. All values placed in the scoreboard are saved to local storage.
 
 # Installation
 
